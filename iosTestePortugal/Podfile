@@ -1,0 +1,14 @@
+platform :ios, '11.0'
+inhibit_all_warnings!
+
+target 'iosTestePortugal' do
+
+  use_frameworks!
+  pod 'Alamofire'
+
+  target 'iosTestePortugalTests' do
+    inherit! :search_paths
+    pod 'Quick'
+    pod 'Nimble'
+  end
+end
