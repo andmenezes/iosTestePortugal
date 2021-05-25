@@ -76,6 +76,9 @@
                             <constraint firstAttribute="width" constant="30" id="Z8G-c3-mDg"/>
                         </constraints>
                         <state key="normal" image="heart" catalog="system"/>
+                        <connections>
+                            <action selector="didTouchFavoritButton:" destination="eig-Tj-KHk" eventType="touchUpInside" id="H5v-NU-e33"/>
+                        </connections>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Favorite" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JyC-A2-ZrG">
                         <rect key="frame" x="46" y="142.5" width="42" height="21"/>
@@ -118,6 +121,7 @@
                 <outlet property="authorsLabel" destination="Y3L-bv-8kf" id="VD7-e7-Iik"/>
                 <outlet property="bookImageView" destination="7sg-IK-u4C" id="vOO-ve-Hbo"/>
                 <outlet property="descTextView" destination="iK1-b0-jJv" id="a9p-y8-Glo"/>
+                <outlet property="favoriteButton" destination="agy-wg-999" id="rdw-d3-vrr"/>
                 <outlet property="titleLabel" destination="wgm-X4-f3k" id="QAL-ok-B4Z"/>
             </connections>
             <point key="canvasLocation" x="153.62318840579712" y="112.83482142857142"/>

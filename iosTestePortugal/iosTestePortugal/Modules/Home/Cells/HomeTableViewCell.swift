@@ -15,6 +15,8 @@ class HomeTableViewCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel?
     @IBOutlet weak var authorsLabel: UILabel!
     @IBOutlet weak var descTextView: UITextView?
+    @IBOutlet weak var favoriteButton: UIButton!
+    var isFavorite: Bool = false
 
     static let reuseIdentifier = "HomeTableViewCell"
 
@@ -24,12 +26,12 @@ class HomeTableViewCell: UITableViewCell {
         self.descTextView?.text = book.volumeInfo.description
         self.descTextView?.isEditable = false
 
-        if let imageLinks = book.volumeInfo.imageLinks, let smallThumbnail = imageLinks.smallThumbnail  {
-            self.getBookImage(url: smallThumbnail)
-        }else if let imageLinks = book.volumeInfo.imageLinks, let thumbnail = imageLinks.thumbnail {
+        if let imageLinks = book.volumeInfo.imageLinks, let thumbnail = imageLinks.thumbnail  {
             self.getBookImage(url: thumbnail)
+        }else if let imageLinks = book.volumeInfo.imageLinks, let smallThumbnail = imageLinks.smallThumbnail {
+            self.getBookImage(url: smallThumbnail)
         }else {
-            //colocar imagem default aqui
+            self.bookImageView?.image = UIImage(named: "BookNotFound")
         }
     }
 
@@ -40,5 +42,16 @@ class HomeTableViewCell: UITableViewCell {
                 self.bookImageView?.image = image
             }
         }
+    }
+    @IBAction func didTouchFavoritButton(_ sender: Any) {
+        self.isFavorite = !self.isFavorite
+
+        if self.isFavorite {
+            self.favoriteButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+
+        }else {
+            self.favoriteButton.setImage(UIImage(systemName: "heart"), for: .normal)
+        }
+
     }
 }
