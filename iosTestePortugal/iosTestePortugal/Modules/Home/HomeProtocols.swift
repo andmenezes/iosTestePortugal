@@ -7,6 +7,7 @@
 //
 import Foundation
 import UIKit
+import PaginatedTableView
 
 // MARK: - Wireframe
 
@@ -26,13 +27,14 @@ protocol HomeInteractorInputProtocol {
 
 protocol HomePresenterInputProtocol: class {
     var books: [BooksItemsEntity] { get }
+    var totalBooks: Int { get }
 	func viewDidLoad()
     func didSelectRowAt(row: Int)
-    func dismiss()
-
+    func fetchMoreBooks()
 }
 
 protocol HomeInteractorOutputProtocol: class {
+    func setTotalBooks(_ totalBooks: Int)
     func didSuccessFetchBooks(bookItems: [BooksItemsEntity])
     func didFailFetchBooks()
 }
@@ -40,6 +42,7 @@ protocol HomeInteractorOutputProtocol: class {
 // MARK: - View
 
 protocol HomePresenterOutputProtocol: class {
+    var tableview: PaginatedTableView! { get set}
     func loadTableView()
     func showError()
 

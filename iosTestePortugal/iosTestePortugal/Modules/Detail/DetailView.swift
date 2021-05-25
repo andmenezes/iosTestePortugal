@@ -13,6 +13,10 @@ class DetailView: UIViewController {
 
     var presenter: DetailPresenterInputProtocol!
 
+    // MARK: - Private Properties
+
+    let strings = DetailStrings.self
+
     // MARK: - Outlets
     @IBOutlet weak var bookImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
@@ -22,29 +26,15 @@ class DetailView: UIViewController {
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var textViewDescription: UITextView!
 
-    // MARK: - Internal Properties
-
-    // MARK: - Private Properties
-
-    // MARK: - Inits
-
     // MARK: - Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = self.strings.title
         self.textViewDescription.isEditable = false
         self.textViewDescription.isSelectable = false
         self.presenter.viewDidLoad()
     }
-
-    // MARK: - Internal Methods
-
-    // MARK: - Private Methods
-
-    // MARK: - Actions
-
-    // MARK: - Notifications
-
 }
 
 // MARK: - DetailPresenterOutputProtocol

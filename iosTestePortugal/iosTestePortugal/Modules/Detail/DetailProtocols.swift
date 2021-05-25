@@ -19,16 +19,17 @@ protocol DetailWireframeProtocol: class {
 
 protocol DetailInteractorInputProtocol {
     var book: BooksItemsEntity { get }
+    func fetchImage(with url: String)
 }
 
 // MARK: - Presenter
 
 protocol DetailPresenterInputProtocol: class {
 	func viewDidLoad()
-	func dismiss()
 }
 
 protocol DetailInteractorOutputProtocol: class {
+    func didFetchBookImage(_ image: UIImage)
 }
 
 // MARK: - View

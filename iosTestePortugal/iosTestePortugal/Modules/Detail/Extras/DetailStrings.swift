@@ -10,5 +10,5 @@ import Foundation
 // MARK: - DetailStrings
 
 struct DetailStrings {
-    static let demo = "demoStr"
+    static let title = "Detalhe do Livro"
 }

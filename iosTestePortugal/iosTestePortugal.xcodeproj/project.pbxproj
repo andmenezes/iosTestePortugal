@@ -193,6 +193,7 @@
 		AB0EEAB5265C0E820076CAAD /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				AB0EEB3A265C38F90076CAAD /* Models */,
 				AB0EEAB6265C0E8B0076CAAD /* Home */,
 				AB0EEAB7265C0E9E0076CAAD /* Detail */,
 			);
@@ -202,8 +203,6 @@
 		AB0EEAB6265C0E8B0076CAAD /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				AB0EEB3A265C38F90076CAAD /* Models */,
-				AB0EEB1D265C22C90076CAAD /* Cells */,
 				AB0EEAC0265C14270076CAAD /* HomeInteractor.swift */,
 				AB0EEAC3265C14270076CAAD /* HomePresenter.swift */,
 				AB0EEAC1265C14270076CAAD /* HomeProtocols.swift */,
@@ -211,6 +210,7 @@
 				AB0EEAC2265C14270076CAAD /* HomeWireframe.swift */,
 				AB0EEABC265C13AB0076CAAD /* Views */,
 				AB0EEABB265C139E0076CAAD /* Extras */,
+				AB0EEB1D265C22C90076CAAD /* Cells */,
 			);
 			path = Home;
 			sourceTree = "<group>";

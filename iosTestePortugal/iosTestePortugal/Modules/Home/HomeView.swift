@@ -20,10 +20,6 @@ class HomeView: UIViewController {
     // MARK: - Internal Properties
     let strings = HomeStrings.self
 
-    // MARK: - Private Properties
-
-    // MARK: - Inits
-
     // MARK: - Lifecycle
 
     override func viewDidLoad() {
@@ -32,8 +28,6 @@ class HomeView: UIViewController {
         self.registerTableViewCells()
         self.presenter.viewDidLoad()
     }
-
-    // MARK: - Internal Methods
 
     // MARK: - Private Methods
     private func registerTableViewCells() {
@@ -44,10 +38,9 @@ class HomeView: UIViewController {
                                 forCellReuseIdentifier: HomeTableViewCell.reuseIdentifier)
     }
 
-    // MARK: - Actions
-
-    // MARK: - Notifications
-
+    func isLoadingCell(for indexPath: IndexPath) -> Bool {
+        return indexPath.row >= self.presenter.books.count
+      }
 }
 
 // MARK: - HomePresenterOutputProtocol
@@ -58,19 +51,24 @@ extension HomeView: HomePresenterOutputProtocol {
     func loadTableView(){
         self.tableview.dataSource = self
         self.tableview.delegate = self
+        self.tableview.prefetchDataSource = self
         self.tableview.reloadData()
-
     }
 
     func showError(){
-
+        //TODO
     }
-
 }
 
-extension HomeView: UITableViewDelegate, UITableViewDataSource {
+extension HomeView: UITableViewDelegate, UITableViewDataSource, UITableViewDataSourcePrefetching {
+    func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
+        if indexPaths.contains(where: self.isLoadingCell) {
+            self.presenter.fetchMoreBooks()
+          }
+    }
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.presenter.books.count
+        return self.presenter.totalBooks
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -91,6 +89,4 @@ extension HomeView: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.presenter.didSelectRowAt(row: indexPath.row)
     }
-
-
 }

@@ -6,6 +6,7 @@
 //  Copyright © 2021 XP Investimentos. All rights reserved.
 //
 import Foundation
+import PaginatedTableView
 
 class HomePresenter: NSObject {
 
@@ -17,26 +18,21 @@ class HomePresenter: NSObject {
 
     // MARK: - Internal Properties
     var books: [BooksItemsEntity] = []
-
-    // MARK: - Private Properties
-
-    // MARK: - Inits
-
-    // MARK: - Internal Methods
-
-    // MARK: - Private Methods
-
-    // MARK: - Notifications
+    var page = 0
+    var totalBooks = 0
 }
 
 // MARK: - HomePresenterInputProtocol
 
 extension HomePresenter: HomePresenterInputProtocol {
+    func fetchMoreBooks() {
+        self.page += 1
+        self.interactor.fetchBooks(page: self.page)
+    }
 
     // MARK: - Internal Methods
 
     func viewDidLoad() {
-		self.trackScreenView()
         self.interactor.fetchBooks(page: 0)
     }
 
@@ -44,38 +40,28 @@ extension HomePresenter: HomePresenterInputProtocol {
         let book = self.books[row]
         self.wireframe.showBookDetail(book)
     }
-
-	func dismiss() {
-		self.trackDismiss()
-	}
 }
 
 // MARK: - HomeInteractorOutputProtocol
 
 extension HomePresenter: HomeInteractorOutputProtocol {
+    func setTotalBooks(_ totalBooks: Int) {
+        self.totalBooks = totalBooks
+    }
+
     // MARK: - Internal Methods
 
     func didSuccessFetchBooks(bookItems: [BooksItemsEntity]) {
-        self.books = bookItems
-        self.view?.loadTableView()
+        if self.page == 0 {
+            self.books = bookItems
+            self.view?.loadTableView()
+        }else {
+            self.books.append(contentsOf: bookItems)
+            self.view?.tableview.reloadData()
+        }
     }
 
     func didFailFetchBooks() {
         self.view?.showError()
     }
-}
-
-// MARK: - Tracker
-
-extension HomePresenter {
-
-	// MARK: - Private Methods
-
-	func trackScreenView() {
-		// TODO: -
-	}
-
-	func trackDismiss() {
-		// TODO: -
-	}
 }

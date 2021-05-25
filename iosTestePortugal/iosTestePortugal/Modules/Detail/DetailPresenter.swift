@@ -16,18 +16,6 @@ class DetailPresenter: NSObject {
     weak var view: DetailPresenterOutputProtocol?
     var interactor: DetailInteractorInputProtocol!
     var wireframe: DetailWireframeProtocol!
-
-    // MARK: - Internal Properties
-
-    // MARK: - Private Properties
-
-    // MARK: - Inits
-
-    // MARK: - Internal Methods
-
-    // MARK: - Private Methods
-
-    // MARK: - Notifications
 }
 
 // MARK: - DetailPresenterInputProtocol
@@ -37,26 +25,19 @@ extension DetailPresenter: DetailPresenterInputProtocol {
     // MARK: - Internal Methods
 
     func viewDidLoad() {
-		self.trackScreenView()
         let book = self.interactor.book
 
         self.view?.titleLabel?.text = book.volumeInfo.title
         self.view?.authorsLabel?.text = book.volumeInfo.authors?.first
         self.view?.publisherLabel.text = book.volumeInfo.publisher
         self.view?.publishedDateLabel.text = book.volumeInfo.publishedDate
+        self.view?.priceLabel.text = String(book.saleInfo?.listPrice?.amount ?? 0)
         self.view?.textViewDescription.text = book.volumeInfo.description
 
-        self.setupFavoriteLabel()
         self.setupThumbnail(book.volumeInfo.imageLinks)
     }
 
     // MARK: - Private Methods
-
-    private func setupFavoriteLabel() {
-//        let labelTap = UITapGestureRecognizer(target: self, action: #selector(self.didTouchFavoritButton(_:)))
-//        self.favoriteLabel.isUserInteractionEnabled = true
-//        self.favoriteLabel.addGestureRecognizer(labelTap)
-    }
 
     private func setupThumbnail(_ imageLinks: ImageLinksEntity?) {
 
@@ -75,39 +56,14 @@ extension DetailPresenter: DetailPresenterInputProtocol {
     }
 
     private func getBookImage(url: String) {
-
-        Alamofire.request(url).responseImage { response in
-            if case .success(let image) = response.result {
-                self.view?.bookImageView?.image = image
-            }
-        }
+        self.interactor?.fetchImage(with: url)
     }
-
-
-	func dismiss() {
-		self.trackDismiss()
-	}
 }
 
 // MARK: - DetailInteractorOutputProtocol
 
 extension DetailPresenter: DetailInteractorOutputProtocol {
-
-    // MARK: - Internal Methods
-    
-}
-
-// MARK: - Tracker
-
-extension DetailPresenter {
-
-	// MARK: - Private Methods
-
-	func trackScreenView() {
-		// TODO: -
-	}
-
-	func trackDismiss() {
-		// TODO: -
-	}
+    func didFetchBookImage(_ image: UIImage) {
+        self.view?.bookImageView?.image = image
+    }
 }

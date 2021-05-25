@@ -12,17 +12,6 @@ class HomeInteractor: NSObject {
     // MARK: - Viper Properties
 
     weak var output: HomeInteractorOutputProtocol?
-
-    // MARK: - Private Properties
-
-    // MARK: - Inits
-
-    // MARK: - Internal Methods
-
-    // MARK: - Private Methods
-
-    // MARK: - Notifications
-
 }
 
 // MARK: - HomeInteractorInputProtocol
@@ -42,6 +31,7 @@ extension HomeInteractor: HomeInteractorInputProtocol {
                 return
             }
 
+            self?.output?.setTotalBooks(contract.totalItems)
             self?.output?.didSuccessFetchBooks(bookItems: contract.items)
 
         }) { [weak self] statusCode, _, _ in

@@ -6,14 +6,14 @@
 //  Copyright © 2021 XP Investimentos. All rights reserved.
 //
 import Foundation
+import Alamofire
+import AlamofireImage
 
 class DetailInteractor: NSObject {
 
     // MARK: - Viper Properties
 
     weak var output: DetailInteractorOutputProtocol?
-
-    // MARK: - Private Properties
 
     // MARK: - Inits
 
@@ -23,11 +23,6 @@ class DetailInteractor: NSObject {
 
     // MARK: - Internal Methods
     var book: BooksItemsEntity
-
-    // MARK: - Private Methods
-
-    // MARK: - Notifications
-
 }
 
 // MARK: - DetailInteractorInputProtocol
@@ -35,4 +30,12 @@ class DetailInteractor: NSObject {
 extension DetailInteractor: DetailInteractorInputProtocol {
 
     // MARK: - Internal Methods
+    func fetchImage(with url: String) {
+
+        Alamofire.request(url).responseImage { response in
+            if case .success(let image) = response.result {
+                self.output?.didFetchBookImage(image)
+            }
+        }
+    }
 }

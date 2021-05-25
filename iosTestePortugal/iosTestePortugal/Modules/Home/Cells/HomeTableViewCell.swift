@@ -22,6 +22,18 @@ class HomeTableViewCell: UITableViewCell {
 
     static let reuseIdentifier = "HomeTableViewCell"
 
+    // MARK: - Overrides
+    override func prepareForReuse() {
+        self.isFavorite = false
+        self.bookImageView?.image = UIImage()
+        self.titleLabel?.text = ""
+        self.authorsLabel?.text = ""
+        self.descLabel?.text = ""
+        self.favoriteButton.setImage(UIImage(systemName: "heart"), for: .normal)
+    }
+
+    // MARK: - Internal Methods
+
     func setupCell(_ book: BooksItemsEntity) {
         self.selectionStyle = .none
         self.titleLabel?.text = book.volumeInfo.title
@@ -30,8 +42,9 @@ class HomeTableViewCell: UITableViewCell {
 
         self.setupFavoriteLabel()
         self.setupThumbnail(book.volumeInfo.imageLinks)
-
     }
+
+    // MARK: - Private Methods
 
     private func setupFavoriteLabel() {
         let labelTap = UITapGestureRecognizer(target: self, action: #selector(self.didTouchFavoritButton(_:)))
@@ -63,6 +76,8 @@ class HomeTableViewCell: UITableViewCell {
             }
         }
     }
+
+    // MARK: - Actions
 
     @IBAction func didTouchFavoritButton(_ sender: Any) {
         self.isFavorite = !self.isFavorite

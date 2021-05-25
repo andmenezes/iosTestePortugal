@@ -8,6 +8,7 @@
 import Foundation
 
 struct BooksEntity: Decodable {
+    let totalItems: Int
     let items: [BooksItemsEntity]
 }
 
