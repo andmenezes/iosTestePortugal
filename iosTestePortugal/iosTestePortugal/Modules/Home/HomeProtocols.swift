@@ -7,7 +7,6 @@
 //
 import Foundation
 import UIKit
-import PaginatedTableView
 
 // MARK: - Wireframe
 
@@ -42,7 +41,7 @@ protocol HomeInteractorOutputProtocol: class {
 // MARK: - View
 
 protocol HomePresenterOutputProtocol: class {
-    var tableview: PaginatedTableView! { get set}
+    var tableview: UITableView! { get set}
     func loadTableView()
     func showError()
 

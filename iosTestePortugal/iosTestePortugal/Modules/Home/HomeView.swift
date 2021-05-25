@@ -6,7 +6,6 @@
 //  Copyright © 2021 XP Investimentos. All rights reserved.
 //
 import UIKit
-import PaginatedTableView
 
 class HomeView: UIViewController {
 
@@ -15,7 +14,7 @@ class HomeView: UIViewController {
     var presenter: HomePresenterInputProtocol!
 
     // MARK: - Outlets
-    @IBOutlet weak var tableview: PaginatedTableView!
+    @IBOutlet weak var tableview: UITableView!
 
     // MARK: - Internal Properties
     let strings = HomeStrings.self
