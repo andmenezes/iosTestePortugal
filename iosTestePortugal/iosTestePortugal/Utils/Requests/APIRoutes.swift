@@ -9,6 +9,6 @@ import Foundation
 
 struct APIRoutes {
     static func getBooks(_ index: Int) -> String {
-        return "https://www.googleapis.com/books/v1/volumes?q=ios&maxResults=20&startIndex=\(index)"
+        return "https://www.googleapis.com/books/v1/volumes?q=ios&maxResults=40&startIndex=\(index)"
     }
 }

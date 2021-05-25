@@ -24,7 +24,7 @@ struct VolumeInfoEntity: Decodable {
     let authors: [String]?
     let publisher: String?
     let publishedDate: String?
-    let description: String
+    let description: String?
     let imageLinks: ImageLinksEntity?
 }
 
