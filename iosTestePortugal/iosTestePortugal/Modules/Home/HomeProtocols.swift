@@ -12,6 +12,7 @@ import UIKit
 
 protocol HomeWireframeProtocol: class {
     func showHome(with window: UIWindow)
+    func showBookDetail(_ book: BooksItemsEntity)
 }
 
 // MARK: - Interactor
@@ -26,7 +27,9 @@ protocol HomeInteractorInputProtocol {
 protocol HomePresenterInputProtocol: class {
     var books: [BooksItemsEntity] { get }
 	func viewDidLoad()
-	func dismiss()
+    func didSelectRowAt(row: Int)
+    func dismiss()
+
 }
 
 protocol HomeInteractorOutputProtocol: class {

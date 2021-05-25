@@ -17,7 +17,12 @@ class DetailInteractor: NSObject {
 
     // MARK: - Inits
 
+    required init(_ book: BooksItemsEntity) {
+        self.book = book
+    }
+
     // MARK: - Internal Methods
+    var book: BooksItemsEntity
 
     // MARK: - Private Methods
 

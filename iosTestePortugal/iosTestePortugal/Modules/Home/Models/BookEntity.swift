@@ -20,14 +20,15 @@ struct BooksItemsEntity: Decodable {
 
 struct VolumeInfoEntity: Decodable {
     let title: String
-    let authors: [String]
+    let authors: [String]?
     let publisher: String?
+    let publishedDate: String?
     let description: String
     let imageLinks: ImageLinksEntity?
 }
 
 struct SaleInfoEntity: Decodable {
-    let isEbook: Bool
+    let isEbook: Bool?
     let listPrice: ListPriceEntity?
     let buyLink: String?
 }
@@ -38,6 +39,6 @@ struct ImageLinksEntity: Decodable {
 }
 
 struct ListPriceEntity: Decodable {
-    let amount: Float
-    let currencyCode: String
+    let amount: Float?
+    let currencyCode: String?
 }

@@ -19,10 +19,10 @@ class DetailWireframe: NSObject {
 
 	// MARK: - Private
 
-    private func setupModule() -> DetailView {
+    private func setupModule(_ book: BooksItemsEntity) -> DetailView {
         let view = DetailView(nibName: self.nibName, bundle: nil)
         self.view = view
-        let interactor = DetailInteractor()
+        let interactor = DetailInteractor(book)
         let presenter = DetailPresenter()
         presenter.interactor = interactor
         presenter.wireframe = self
@@ -37,18 +37,13 @@ class DetailWireframe: NSObject {
 
 extension DetailWireframe: DetailWireframeProtocol {
 
-	func presentDetail(from sourceViewController: UIViewController) {
-        let view = self.setupModule()
-        sourceViewController.present(view, animated: true, completion: nil)
-    }
-
-    func presentDetail(with navigationController: UINavigationController) {
-        let view = self.setupModule()
+    func presentDetail(with navigationController: UINavigationController, book: BooksItemsEntity) {
+        let view = self.setupModule(book)
         navigationController.present(view, animated: true, completion: nil)
     }
 
-    func showDetail(with navigationController: UINavigationController) {
-        let view = self.setupModule()
+    func showDetail(with navigationController: UINavigationController, book: BooksItemsEntity) {
+        let view = self.setupModule(book)
         navigationController.show(view, sender: nil)
     }
 }

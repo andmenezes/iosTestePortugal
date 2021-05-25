@@ -14,6 +14,13 @@ class DetailView: UIViewController {
     var presenter: DetailPresenterInputProtocol!
 
     // MARK: - Outlets
+    @IBOutlet weak var bookImageView: UIImageView!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var authorsLabel: UILabel!
+    @IBOutlet weak var publisherLabel: UILabel!
+    @IBOutlet weak var publishedDateLabel: UILabel!
+    @IBOutlet weak var priceLabel: UILabel!
+    @IBOutlet weak var textViewDescription: UITextView!
 
     // MARK: - Internal Properties
 
@@ -25,6 +32,8 @@ class DetailView: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.textViewDescription.isEditable = false
+        self.textViewDescription.isSelectable = false
         self.presenter.viewDidLoad()
     }
 

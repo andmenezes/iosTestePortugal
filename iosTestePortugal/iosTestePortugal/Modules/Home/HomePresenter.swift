@@ -40,6 +40,11 @@ extension HomePresenter: HomePresenterInputProtocol {
         self.interactor.fetchBooks(page: 0)
     }
 
+    func didSelectRowAt(row: Int) {
+        let book = self.books[row]
+        self.wireframe.showBookDetail(book)
+    }
+
 	func dismiss() {
 		self.trackDismiss()
 	}

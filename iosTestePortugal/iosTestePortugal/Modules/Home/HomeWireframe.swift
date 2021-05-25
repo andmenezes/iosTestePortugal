@@ -45,4 +45,13 @@ extension HomeWireframe: HomeWireframeProtocol {
 
         window.rootViewController = navigationController
     }
+
+    func showBookDetail(_ book: BooksItemsEntity) {
+        guard let navigationController = self.view?.navigationController else {
+            return
+        }
+
+        let detailWireframe: DetailWireframeProtocol = DetailWireframe()
+        detailWireframe.presentDetail(with: navigationController, book: book)
+    }
 }

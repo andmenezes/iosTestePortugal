@@ -11,13 +11,14 @@ import UIKit
 // MARK: - Wireframe
 
 protocol DetailWireframeProtocol: class {
-    func presentDetail(from sourceViewController: UIViewController)
-    func presentDetail(with navigationController: UINavigationController)
+    func presentDetail(with navigationController: UINavigationController, book: BooksItemsEntity)
+    func showDetail(with navigationController: UINavigationController, book: BooksItemsEntity)
 }
 
 // MARK: - Interactor
 
 protocol DetailInteractorInputProtocol {
+    var book: BooksItemsEntity { get }
 }
 
 // MARK: - Presenter
@@ -33,7 +34,13 @@ protocol DetailInteractorOutputProtocol: class {
 // MARK: - View
 
 protocol DetailPresenterOutputProtocol: class {
-
+    var bookImageView: UIImageView! { get set }
+    var titleLabel: UILabel! { get set }
+    var authorsLabel: UILabel! { get set }
+    var publisherLabel: UILabel! { get set }
+    var publishedDateLabel: UILabel! { get set }
+    var priceLabel: UILabel! { get set }
+    var textViewDescription: UITextView! { get set }
 }
 
 // MARK: - Analytics

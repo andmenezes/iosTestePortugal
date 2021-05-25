@@ -13,22 +13,42 @@ class HomeTableViewCell: UITableViewCell {
 
     @IBOutlet weak var bookImageView: UIImageView?
     @IBOutlet weak var titleLabel: UILabel?
-    @IBOutlet weak var authorsLabel: UILabel!
-    @IBOutlet weak var descTextView: UITextView?
+    @IBOutlet weak var authorsLabel: UILabel?
+    @IBOutlet weak var descLabel: UILabel?
     @IBOutlet weak var favoriteButton: UIButton!
+    @IBOutlet weak var favoriteLabel: UILabel!
+
     var isFavorite: Bool = false
 
     static let reuseIdentifier = "HomeTableViewCell"
 
     func setupCell(_ book: BooksItemsEntity) {
+        self.selectionStyle = .none
         self.titleLabel?.text = book.volumeInfo.title
-        self.authorsLabel.text = book.volumeInfo.authors.first
-        self.descTextView?.text = book.volumeInfo.description
-        self.descTextView?.isEditable = false
+        self.authorsLabel?.text = book.volumeInfo.authors?.first
+        self.descLabel?.text = book.volumeInfo.description
 
-        if let imageLinks = book.volumeInfo.imageLinks, let thumbnail = imageLinks.thumbnail  {
+        self.setupFavoriteLabel()
+        self.setupThumbnail(book.volumeInfo.imageLinks)
+
+    }
+
+    private func setupFavoriteLabel() {
+        let labelTap = UITapGestureRecognizer(target: self, action: #selector(self.didTouchFavoritButton(_:)))
+        self.favoriteLabel.isUserInteractionEnabled = true
+        self.favoriteLabel.addGestureRecognizer(labelTap)
+    }
+
+    private func setupThumbnail(_ imageLinks: ImageLinksEntity?) {
+
+        guard let link = imageLinks else {
+            self.bookImageView?.image = UIImage(named: "BookNotFound")
+            return
+        }
+
+        if let thumbnail = link.thumbnail  {
             self.getBookImage(url: thumbnail)
-        }else if let imageLinks = book.volumeInfo.imageLinks, let smallThumbnail = imageLinks.smallThumbnail {
+        }else if let smallThumbnail = link.smallThumbnail {
             self.getBookImage(url: smallThumbnail)
         }else {
             self.bookImageView?.image = UIImage(named: "BookNotFound")
@@ -43,6 +63,7 @@ class HomeTableViewCell: UITableViewCell {
             }
         }
     }
+
     @IBAction func didTouchFavoritButton(_ sender: Any) {
         self.isFavorite = !self.isFavorite
 
@@ -52,6 +73,5 @@ class HomeTableViewCell: UITableViewCell {
         }else {
             self.favoriteButton.setImage(UIImage(systemName: "heart"), for: .normal)
         }
-
     }
 }
