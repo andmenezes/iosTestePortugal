@@ -17,21 +17,28 @@ protocol HomeWireframeProtocol: class {
 // MARK: - Interactor
 
 protocol HomeInteractorInputProtocol {
+    func fetchBooks(page: Int)
+    func favoriteBook(bookId: String)
 }
 
 // MARK: - Presenter
 
 protocol HomePresenterInputProtocol: class {
+    var books: [BooksItemsEntity] { get }
 	func viewDidLoad()
 	func dismiss()
 }
 
 protocol HomeInteractorOutputProtocol: class {
+    func didSuccessFetchBooks(bookItems: [BooksItemsEntity])
+    func didFailFetchBooks()
 }
 
 // MARK: - View
 
 protocol HomePresenterOutputProtocol: class {
+    func loadTableView()
+    func showError()
 
 }
 

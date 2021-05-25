@@ -16,6 +16,7 @@ class HomePresenter: NSObject {
     var wireframe: HomeWireframeProtocol!
 
     // MARK: - Internal Properties
+    var books: [BooksItemsEntity] = []
 
     // MARK: - Private Properties
 
@@ -36,6 +37,7 @@ extension HomePresenter: HomePresenterInputProtocol {
 
     func viewDidLoad() {
 		self.trackScreenView()
+        self.interactor.fetchBooks(page: 0)
     }
 
 	func dismiss() {
@@ -46,9 +48,16 @@ extension HomePresenter: HomePresenterInputProtocol {
 // MARK: - HomeInteractorOutputProtocol
 
 extension HomePresenter: HomeInteractorOutputProtocol {
-
     // MARK: - Internal Methods
-    
+
+    func didSuccessFetchBooks(bookItems: [BooksItemsEntity]) {
+        self.books = bookItems
+        self.view?.loadTableView()
+    }
+
+    func didFailFetchBooks() {
+        self.view?.showError()
+    }
 }
 
 // MARK: - Tracker

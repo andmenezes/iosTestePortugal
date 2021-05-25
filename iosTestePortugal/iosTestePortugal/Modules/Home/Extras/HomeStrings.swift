@@ -10,5 +10,5 @@ import Foundation
 // MARK: - HomeStrings
 
 struct HomeStrings {
-    static let demo = "demoStr"
+    static let title = "Book Store Home"
 }

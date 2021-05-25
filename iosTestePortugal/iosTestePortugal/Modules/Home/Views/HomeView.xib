@@ -10,6 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomeView" customModule="iosTestePortugal" customModuleProvider="target">
             <connections>
+                <outlet property="tableview" destination="uJp-32-dm5" id="fmo-2N-8cW"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -17,12 +18,28 @@
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="uJp-32-dm5" customClass="PaginatedTableView" customModule="PaginatedTableView">
+                    <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                </tableView>
+            </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemTealColor"/>
+            <constraints>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="uJp-32-dm5" secondAttribute="trailing" id="Fcn-dx-OIh"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="uJp-32-dm5" secondAttribute="bottom" id="P1J-4S-hHR"/>
+                <constraint firstItem="uJp-32-dm5" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="UZD-b6-zCk"/>
+                <constraint firstItem="uJp-32-dm5" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="fnY-E8-H2r"/>
+            </constraints>
             <point key="canvasLocation" x="141" y="145"/>
         </view>
     </objects>
     <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemTealColor">
             <color red="0.35294117647058826" green="0.78431372549019607" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

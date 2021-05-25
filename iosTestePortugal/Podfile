@@ -4,7 +4,9 @@ inhibit_all_warnings!
 target 'iosTestePortugal' do
 
   use_frameworks!
-  pod 'Alamofire'
+  pod 'Alamofire', '4.9.1'
+  pod 'AlamofireImage'
+  pod 'PaginatedTableView'
 
   target 'iosTestePortugalTests' do
     inherit! :search_paths
