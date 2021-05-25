@@ -6,6 +6,7 @@
 //  Copyright © 2021 XP Investimentos. All rights reserved.
 //
 import UIKit
+import SafariServices
 
 class DetailWireframe: NSObject {
 
@@ -45,5 +46,10 @@ extension DetailWireframe: DetailWireframeProtocol {
     func showDetail(with navigationController: UINavigationController, book: BooksItemsEntity) {
         let view = self.setupModule(book)
         navigationController.show(view, sender: nil)
+    }
+
+    func presentBuyLink(url: URL) {
+        let safari = SFSafariViewController(url: url)
+        self.view?.present(safari, animated: true, completion: nil)
     }
 }

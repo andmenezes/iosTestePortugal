@@ -12,6 +12,7 @@
             <connections>
                 <outlet property="authorsLabel" destination="hv3-ge-dWn" id="HmO-sU-Txd"/>
                 <outlet property="bookImageView" destination="Iy9-Nz-6Hb" id="lXH-5o-bZd"/>
+                <outlet property="buyButton" destination="Glu-vP-fOc" id="1q7-X4-2gC"/>
                 <outlet property="priceLabel" destination="yYi-zs-rCi" id="wSX-u1-neG"/>
                 <outlet property="publishedDateLabel" destination="pna-u4-cLf" id="bNh-Jq-1AS"/>
                 <outlet property="publisherLabel" destination="bI4-8x-289" id="PVN-Gg-dMm"/>
@@ -131,6 +132,9 @@
                                     <state key="normal" title="COMPRAR">
                                         <color key="titleColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                     </state>
+                                    <connections>
+                                        <action selector="didTouchBuyLink:" destination="-1" eventType="touchUpInside" id="jmZ-sK-IBq"/>
+                                    </connections>
                                 </button>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

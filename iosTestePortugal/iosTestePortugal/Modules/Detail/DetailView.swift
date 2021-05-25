@@ -25,6 +25,7 @@ class DetailView: UIViewController {
     @IBOutlet weak var publishedDateLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var textViewDescription: UITextView!
+    @IBOutlet weak var buyButton: UIButton!
 
     // MARK: - Lifecycle
 
@@ -34,6 +35,10 @@ class DetailView: UIViewController {
         self.textViewDescription.isEditable = false
         self.textViewDescription.isSelectable = false
         self.presenter.viewDidLoad()
+    }
+
+    @IBAction func didTouchBuyLink(_ sender: Any) {
+        self.presenter.didTouchBuyLink()
     }
 }
 

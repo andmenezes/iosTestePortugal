@@ -6,8 +6,6 @@
 //  Copyright © 2021 XP Investimentos. All rights reserved.
 //
 import UIKit
-import Alamofire
-import AlamofireImage
 
 class DetailPresenter: NSObject {
 
@@ -35,6 +33,22 @@ extension DetailPresenter: DetailPresenterInputProtocol {
         self.view?.textViewDescription.text = book.volumeInfo.description
 
         self.setupThumbnail(book.volumeInfo.imageLinks)
+
+        if let _ = book.saleInfo?.buyLink {
+            self.view?.buyButton.isEnabled = true
+            self.view?.buyButton.backgroundColor = UIColor.systemOrange
+        }else {
+            self.view?.buyButton.isEnabled = false
+            self.view?.buyButton.backgroundColor = UIColor.systemGray
+        }
+    }
+
+    func didTouchBuyLink() {
+        let book = self.interactor.book
+        
+        if let buyLinkString = book.saleInfo?.buyLink, let url = URL(string: buyLinkString) {
+            self.wireframe.presentBuyLink(url: url)
+        }
     }
 
     // MARK: - Private Methods

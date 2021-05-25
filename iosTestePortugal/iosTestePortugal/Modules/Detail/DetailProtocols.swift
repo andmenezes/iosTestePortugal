@@ -13,6 +13,7 @@ import UIKit
 protocol DetailWireframeProtocol: class {
     func presentDetail(with navigationController: UINavigationController, book: BooksItemsEntity)
     func showDetail(with navigationController: UINavigationController, book: BooksItemsEntity)
+    func presentBuyLink(url: URL)
 }
 
 // MARK: - Interactor
@@ -26,6 +27,7 @@ protocol DetailInteractorInputProtocol {
 
 protocol DetailPresenterInputProtocol: class {
 	func viewDidLoad()
+    func didTouchBuyLink()
 }
 
 protocol DetailInteractorOutputProtocol: class {
@@ -42,6 +44,7 @@ protocol DetailPresenterOutputProtocol: class {
     var publishedDateLabel: UILabel! { get set }
     var priceLabel: UILabel! { get set }
     var textViewDescription: UITextView! { get set }
+    var buyButton: UIButton! { get set }
 }
 
 // MARK: - Analytics
